@@ -238,7 +238,7 @@ RUN git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git /opt/.oh-m
 RUN wget -O /opt/.oh-my-zsh/themes/honukai.zsh-theme https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme
 
 # pull kube-ps1 support
-RUN wget -O ~/dev/kube-ps1 https://aur.archlinux.org/packages/kube-ps1/ && chmod +x ~/dev/kube-ps1
+RUN wget -O ~/dev/kube-ps1 https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh && chmod +x ~/dev/kube-ps1
 
 # install kubectx
 RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
