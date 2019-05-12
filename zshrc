@@ -322,8 +322,8 @@ alias iks='ibmcloud ks'
 alias k='kubectl'
 
 ### Set KUBECONFIG using merged IBM Cloud configs
-export KUBECONFIG=$(/bin/iks-merged-config.sh)
+export KUBECONFIG=$(/opt/iks-merged-config.sh)
 
 ### Enable kube-ps1 support
-source "~/dev/kube-ps1.sh"
+source "/opt/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
