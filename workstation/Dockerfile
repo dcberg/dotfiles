@@ -233,11 +233,40 @@ RUN git clone https://github.com/tmux-plugins/tmux-open.git ~/.tmux/plugins/tmux
 RUN git clone https://github.com/tmux-plugins/tmux-yank.git ~/.tmux/plugins/tmux-yank
 RUN git clone https://github.com/tmux-plugins/tmux-prefix-highlight.git ~/.tmux/plugins/tmux-prefix-highlight
 
+# install oh-my-zsh
+RUN git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git /opt/.oh-my-zsh
+RUN wget -O /opt/.oh-my-zsh/themes/honukai.zsh-theme https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme
+
+# pull kube-ps1 support
+RUN wget -O ~/dev/kube-ps1 https://aur.archlinux.org/packages/kube-ps1/ && chmod +x ~/dev/kube-ps1
+
+# install kubectx
+RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
+   ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx && \
+   ln -s /opt/kubectx/kubens /usr/local/bin/kubens && \
+   mkdir -p ~/.oh-my-zsh/completions && \
+   chmod -R 755 ~/.oh-my-zsh/completions && \
+   ln -s /opt/kubectx/completion/kubectx.zsh ~/.oh-my-zsh/completions/_kubectx.zsh && \
+   ln -s /opt/kubectx/completion/kubens.zsh ~/.oh-my-zsh/completions/_kubens.zsh
+
+# install IBM Cloud CLI and plugins
+RUN curl -sL https://ibm.biz/idt-installer | bash
+RUN ibmcloud plugin install kubernetes-service
+RUN ibmcloud plugin install container-registry
+
+RUN mkdir ~/dev
+# copy IKS cluster scripts
+COPY iks-merged-config.sh ~/dev/iks-merged-config.sh
+RUN chmod +x ~/dev/iks-merged-config.sh
+COPY iks-download-cluster-configs.sh ~/dev/iks-download-cluster-configs.sh
+RUN chmod +x ~/dev/iks-download-cluster-configs.sh
+
 RUN chsh -s /usr/bin/zsh
 
 EXPOSE 3222 60000-60010/udp
 
 WORKDIR /root
+# copy entrypoint command scriopt
 COPY entrypoint.sh /bin/entrypoint.sh
 CMD ["/bin/entrypoint.sh"]
 
