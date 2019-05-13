@@ -251,7 +251,7 @@ RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
    ln -s /opt/kubectx/completion/kubens.zsh /opt/.oh-my-zsh/completions/_kubens.zsh
 
 # Setup a fake kube config
-RUN mkkdir ~/.kube 
+RUN mkdir ~/.kube 
 COPY kubeconfig ~/.kube/config
 
 # install IBM Cloud CLI and plugins
