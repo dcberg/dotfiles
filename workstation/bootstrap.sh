@@ -12,6 +12,9 @@ apt-get install -qq -y \
 echo "Creating directories"
 mkdir -p /mnt/code /mnt/secrets
 
+cp pull-secrets.sh /mnt/secrets/pull-secrets.sh
+chmod +x /mnt/secrets/pull-secrets.sh
+
 echo "=> Setting up dev service"
 cat > dockerdev.service <<EOF
 [Unit]
