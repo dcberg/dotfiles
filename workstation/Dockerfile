@@ -236,7 +236,7 @@ RUN git clone https://github.com/tmux-plugins/tmux-prefix-highlight.git ~/.tmux/
 
 # install oh-my-zsh
 RUN git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git /opt/.oh-my-zsh
-#RUN wget -O /opt/.oh-my-zsh/themes/honukai.zsh-theme https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme
+RUN wget -O /opt/.oh-my-zsh/themes/honukai.zsh-theme https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme
 
 # pull kube-ps1 support
 RUN wget -O /opt/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh && chmod +x /opt/kube-ps1.sh
