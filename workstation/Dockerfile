@@ -236,7 +236,7 @@ RUN git clone https://github.com/tmux-plugins/tmux-prefix-highlight.git ~/.tmux/
 
 # install oh-my-zsh
 RUN git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git /opt/.oh-my-zsh
-RUN wget -O /opt/.oh-my-zsh/themes/honukai.zsh-theme https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme
+#RUN wget -O /opt/.oh-my-zsh/themes/honukai.zsh-theme https://raw.githubusercontent.com/oskarkrawczyk/honukai-iterm/master/honukai.zsh-theme
 
 # pull kube-ps1 support
 RUN wget -O /opt/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh && chmod +x /opt/kube-ps1.sh
@@ -245,10 +245,10 @@ RUN wget -O /opt/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1
 RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
    ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx && \
    ln -s /opt/kubectx/kubens /usr/local/bin/kubens && \
-   mkdir -p ~/opt/.oh-my-zsh/completions && \
-   chmod -R 755 ~/opt/.oh-my-zsh/completions && \
-   ln -s /opt/kubectx/completion/kubectx.zsh ~/opt/.oh-my-zsh/completions/_kubectx.zsh && \
-   ln -s /opt/kubectx/completion/kubens.zsh ~/opt/.oh-my-zsh/completions/_kubens.zsh
+   mkdir -p /opt/.oh-my-zsh/completions && \
+   chmod -R 755 /opt/.oh-my-zsh/completions && \
+   ln -s /opt/kubectx/completion/kubectx.zsh /opt/.oh-my-zsh/completions/_kubectx.zsh && \
+   ln -s /opt/kubectx/completion/kubens.zsh /opt/.oh-my-zsh/completions/_kubens.zsh
 
 # install IBM Cloud CLI and plugins
 RUN curl -sL https://ibm.biz/idt-installer | bash
