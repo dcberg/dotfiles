@@ -216,9 +216,9 @@ COPY --from=protobuf_builder /usr/local/include/google/ /usr/local/include/googl
 RUN wget https://github.com/gsamokovarov/jump/releases/download/v0.22.0/jump_0.22.0_amd64.deb && sudo dpkg -i jump_0.22.0_amd64.deb && rm -rf jump_0.22.0_amd64.deb
 
 # install keys
-RUN mkdir ~/.ssh
+RUN mkdir ~/.ssh && chmod 700 ~/.ssh
 COPY danberg.keys ~/.ssh/authorized_keys
-RUN chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys
+#RUN chmod 600 ~/.ssh/authorized_keys
 
 # vim plugins
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
