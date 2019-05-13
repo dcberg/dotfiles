@@ -3,17 +3,17 @@
 set -eu
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get update
-apt-get upgrade -y
+#apt-get update
+#apt-get upgrade -y
 
-apt-get install -qq -y \
-  openssh-server
+#apt-get install -qq -y \
+#  openssh-server
 
 echo "Creating directories"
 mkdir -p /mnt/code /mnt/secrets
 
 cp pull-secrets.sh /mnt/secrets/pull-secrets.sh
-chmod +x /mnt/secrets/pull-secrets.sh
+chmod +x /mnt/secrets/pull-secrets.sh 
 
 echo "=> Setting up dev service"
 cat > dockerdev.service <<EOF
