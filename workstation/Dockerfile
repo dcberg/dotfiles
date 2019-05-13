@@ -250,6 +250,10 @@ RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
    ln -s /opt/kubectx/completion/kubectx.zsh /opt/.oh-my-zsh/completions/_kubectx.zsh && \
    ln -s /opt/kubectx/completion/kubens.zsh /opt/.oh-my-zsh/completions/_kubens.zsh
 
+# Setup a fake kube config
+RUN mkkdir ~/.kube 
+COPY kubeconfig ~/.kube/config
+
 # install IBM Cloud CLI and plugins
 RUN curl -sL https://ibm.biz/idt-installer | bash
 # RUN ibmcloud plugin install kubernetes-service
