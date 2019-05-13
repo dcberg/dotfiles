@@ -27,3 +27,7 @@ COPY iks-merged-config.sh /opt/iks-merged-config.sh
 COPY iks-download-cluster-configs.sh /opt/iks-download-cluster-configs.sh
 RUN chmod +x /opt/iks-merged-config.sh && \
    chmod +x /opt/iks-download-cluster-configs.sh
+
+WORKDIR /root
+# copy entrypoint command scriopt
+COPY entrypoint.sh /bin/entrypoint.sh
