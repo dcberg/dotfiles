@@ -7,7 +7,7 @@ set -e
   # the reason we dont't copy the files individually is, to easily push changes
   # if needed
   cd ~/code
-  git clone --recursive https://github.com/dcberg/dotfiles.git
+  git clone https://github.com/dcberg/dotfiles.git
 #fi
 
 cd ~/code/dotfiles 
