@@ -19,8 +19,8 @@ RUN git clone https://github.com/ahmetb/kubectx /opt/kubectx && \
 
 # install IBM Cloud CLI and plugins
 RUN curl -sL https://ibm.biz/idt-installer | bash
-RUN ibmcloud plugin install kubernetes-service
-RUN ibmcloud plugin install container-registry
+# RUN ibmcloud plugin install kubernetes-service
+# RUN ibmcloud plugin install container-registry
 
 # copy IKS cluster scripts
 COPY iks-merged-config.sh /opt/iks-merged-config.sh
