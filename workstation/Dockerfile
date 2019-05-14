@@ -256,10 +256,10 @@ RUN curl -sL https://ibm.biz/idt-installer | bash
 # RUN ibmcloud plugin install container-registry
 
 # copy IKS cluster scripts
-COPY iks-merged-config.sh /opt/iks-merged-config.sh
-COPY iks-download-cluster-configs.sh /opt/iks-download-cluster-configs.sh
-RUN chmod +x /opt/iks-merged-config.sh && \
-   chmod +x /opt/iks-download-cluster-configs.sh
+COPY iks-merged-config.sh ~/opt/iks-merged-config.sh
+COPY iks-download-cluster-configs.sh ~/opt/iks-download-cluster-configs.sh
+RUN chmod +x ~/opt/iks-merged-config.sh && \
+   chmod +x ~/opt/iks-download-cluster-configs.sh
 
 RUN chsh -s /usr/bin/zsh
 
