@@ -235,7 +235,8 @@ RUN git clone https://github.com/tmux-plugins/tmux-yank.git ~/.tmux/plugins/tmux
 RUN git clone https://github.com/tmux-plugins/tmux-prefix-highlight.git ~/.tmux/plugins/tmux-prefix-highlight
 
 # pull kube-ps1 support
-RUN wget -O /opt/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh && chmod +x /opt/kube-ps1.sh
+RUN mkdir ~/opt && \
+  wget -O ~/opt/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh && chmod +x ~/opt/kube-ps1.sh
 
 # install kubectx
 RUN git clone https://github.com/ahmetb/kubectx ~/opt/kubectx && \
