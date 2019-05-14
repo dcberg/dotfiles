@@ -7,7 +7,7 @@ export OP_SESSION_ibm=$(op signin https://ibm.ent.1password.com danberg@us.ibm.c
 
 echo "Pulling secrets"
 # private keys
-op get document 'github_rsa' > github_rsa
+op get document 'ipadgithub_rsa' > github_rsa
 #op get document 'zsh_private' > zsh_private
 op get document '.zsh_history' > .zsh_history
 
