@@ -257,12 +257,15 @@ eval "$(direnv hook zsh)"
 # ===================
 
 ### Setup kubectx autocomplete
-ln -s /opt/kubectx/completion/kubectx.zsh /usr/share/zsh/functions/Completion/_kubectx.zsh
-ln -s /opt/kubectx/completion/kubens.zsh /usr/share/zsh/functions/Completion/_kubens.zsh
+if [ ! -d /opt/completion ]; then
+  mkdir /opt/completion
+fi
+fpath=(/opt/completion $fpath)
+ln -s /opt/kubectx/completion/kubectx.zsh /opt/completion/_kubectx.zsh
+ln -s /opt/kubectx/completion/kubens.zsh /opt/completion/_kubens.zsh
 
-### IBM Clopud autocomplete
+### IBM Cloud autocomplete
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
-source /opt/kubectx/completion/kubens.zsh
 
 ### Setup aliases
 alias iks='ibmcloud ks'
