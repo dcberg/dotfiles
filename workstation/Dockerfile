@@ -246,6 +246,8 @@ RUN git clone https://github.com/ahmetb/kubectx ~/opt/kubectx && \
    ln -s ~/opt/kubectx/completion/kubectx.zsh ~/opt/completion/_kubectx.zsh && \
    ln -s ~/opt/kubectx/completion/kubens.zsh ~/opt/completion/_kubens.zsh
 
+WORKDIR /root
+
 # Setup a fake kube config
 RUN mkdir ~/.kube 
 COPY kubeconfig ~/.kube/config
@@ -265,7 +267,6 @@ RUN chsh -s /usr/bin/zsh
 
 EXPOSE 3222 60000-60010/udp
 
-WORKDIR /root
 # copy entrypoint command scriopt
 COPY entrypoint.sh /bin/entrypoint.sh
 CMD ["/bin/entrypoint.sh"]
