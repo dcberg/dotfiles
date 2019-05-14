@@ -257,8 +257,8 @@ eval "$(direnv hook zsh)"
 # ===================
 
 ### Setup kubectx autocomplete
-source /opt/kubectx/completion/kubectx.zsh
-source /opt/kubectx/completion/kubens.zsh
+ln -s /opt/kubectx/completion/kubectx.zsh /usr/share/zsh/functions/Completion/_kubectx.zsh
+ln -s /opt/kubectx/completion/kubens.zsh /usr/share/zsh/functions/Completion/_kubens.zsh
 
 ### IBM Clopud autocomplete
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
