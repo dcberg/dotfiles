@@ -26,8 +26,8 @@ After=docker.service
 TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill dev
 ExecStartPre=-/usr/bin/docker rm dev
-ExecStartPre=/usr/bin/docker pull danberg/dev:2e80f0d
-ExecStart=/usr/bin/docker run -h dev -e TZ=America/New_York --net=host --rm -v /var/run/docker.sock:/var/run/docker.sock -v /mnt/code:/root/code -v /mnt/secrets:/root/secrets --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --privileged --name dev danberg/dev:2e80f0d
+ExecStartPre=/usr/bin/docker pull danberg/dev:3304717
+ExecStart=/usr/bin/docker run -h dev -e TZ=America/New_York --net=host --rm -v /var/run/docker.sock:/var/run/docker.sock -v /mnt/code:/root/code -v /mnt/secrets:/root/secrets --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --privileged --name dev danberg/dev:3304717
 
 [Install]
 WantedBy=multi-user.target
