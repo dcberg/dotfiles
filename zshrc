@@ -257,12 +257,7 @@ eval "$(direnv hook zsh)"
 # ===================
 
 ### Setup kubectx autocomplete
-if [ ! -d /opt/completion ]; then
-  mkdir /opt/completion
-fi
-fpath=(/opt/completion $fpath)
-ln -s /opt/kubectx/completion/kubectx.zsh /opt/completion/_kubectx.zsh
-ln -s /opt/kubectx/completion/kubens.zsh /opt/completion/_kubens.zsh
+fpath=(~/opt/completion $fpath)
 
 ### IBM Cloud autocomplete
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
@@ -272,8 +267,8 @@ alias iks='ibmcloud ks'
 alias k='kubectl'
 
 ### Set KUBECONFIG using merged IBM Cloud configs
-export KUBECONFIG=$(/opt/iks-merged-config.sh)
+export KUBECONFIG=$(~/opt/iks-merged-config.sh)
 
 ### Enable kube-ps1 support
-source "/opt/kube-ps1.sh"
+source ~/opt/kube-ps1.sh
 PS1='$(kube_ps1)'$PS1
