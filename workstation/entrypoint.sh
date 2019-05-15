@@ -23,5 +23,16 @@ ln -s $(pwd)/gitconfig ~/.gitconfig
 ln -s $(pwd)/agignore ~/.agignore
 ln -s $(pwd)/sshconfig ~/.ssh/config
 
+# copy files linked in .zshrc
+cd ~/code/dotfiles/workstation
+echo "Copying IKS related files"
+mkdir ~/.kube 
+cp kubeconfig ~/.kube/config
+
+cp iks-merged-config.sh ~/opt/iks-merged-config.sh
+cp iks-download-cluster-configs.sh ~/opt/iks-download-cluster-configs.sh
+chmod +x ~/opt/iks-merged-config.sh
+chmod +x ~/opt/iks-download-cluster-configs.sh
+
 
 /usr/sbin/sshd -D
