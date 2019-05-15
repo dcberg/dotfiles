@@ -269,6 +269,7 @@ source <(oc completion zsh)
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
 ### Setup aliases
+alias ic='ibmcloud ic'
 alias iks='ibmcloud ks'
 alias k='kubectl'
 
