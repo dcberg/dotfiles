@@ -239,12 +239,7 @@ RUN mkdir ~/opt && \
   wget -O ~/opt/kube-ps1.sh https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh && chmod +x ~/opt/kube-ps1.sh
 
 # install kubectx
-RUN git clone https://github.com/ahmetb/kubectx ~/opt/kubectx && \
-   ln -s ~/opt/kubectx/kubectx /usr/local/bin/kubectx && \
-   ln -s ~/opt/kubectx/kubens /usr/local/bin/kubens && \
-   mkdir ~/opt/completion &&\
-   ln -s ~/opt/kubectx/completion/kubectx.zsh ~/opt/completion/_kubectx.zsh && \
-   ln -s ~/opt/kubectx/completion/kubens.zsh ~/opt/completion/_kubens.zsh
+RUN git clone https://github.com/ahmetb/kubectx ~/opt/kubectx 
 
 # install IBM Cloud CLI and plugins
 RUN curl -sL https://ibm.biz/idt-installer | bash

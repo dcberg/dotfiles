@@ -34,5 +34,13 @@ cp iks-download-cluster-configs.sh ~/opt/iks-download-cluster-configs.sh
 chmod +x ~/opt/iks-merged-config.sh
 chmod +x ~/opt/iks-download-cluster-configs.sh
 
+# setup kubectx
+ln -s ~/opt/kubectx/kubectx /usr/local/bin/kubectx
+ln -s ~/opt/kubectx/kubens /usr/local/bin/kubens
+# setup completions
+mkdir ~/opt/completion
+ln -s ~/opt/kubectx/completion/kubectx.zsh ~/opt/completion/_kubectx.zsh
+ln -s ~/opt/kubectx/completion/kubens.zsh ~/opt/completion/_kubens.zsh
+
 
 /usr/sbin/sshd -D
