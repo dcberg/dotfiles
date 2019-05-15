@@ -126,6 +126,9 @@ function parse_git_dirty() {
 # ===================
 #    AUTOCOMPLETION
 # ===================
+### Setup completion path
+fpath=(~/opt/completion $fpath)
+
 # enable completion
 autoload -Uz compinit
 compinit
