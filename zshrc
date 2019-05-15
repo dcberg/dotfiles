@@ -259,6 +259,9 @@ eval "$(direnv hook zsh)"
 ### Setup kubectx autocomplete
 fpath=(~/opt/completion $fpath)
 
+### kubectl autocomplete
+source <(kubectl completion zsh)
+
 ### IBM Cloud autocomplete
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
 
