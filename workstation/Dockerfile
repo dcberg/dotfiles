@@ -6,6 +6,16 @@ RUN apt-get update && apt-get install -y curl ca-certificates
 RUN curl -L -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 RUN chmod 755 /usr/local/bin/kubectl
 
+# install oc (openshift)
+FROM ubuntu:18.10 as oc_builder
+RUN apt-get update && apt-get install -y wget ca-certificates
+RUN wget https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz && \
+  tar xf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz && \
+  chmod +x openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc && \
+  mv openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc /urs/local/bin && \
+  rm openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
+
+
 # install 1password
 FROM ubuntu:18.10 as onepassword_builder
 RUN apt-get update && apt-get install -y curl ca-certificates unzip
@@ -196,7 +206,10 @@ ENV TERM screen-256color
 # kubectl
 COPY --from=kubectl_builder /usr/local/bin/kubectl /usr/local/bin/
 
-# kubectl
+# oc 
+COPY --from=oc_builder /usr/local/bin/oc /usr/local/bin/
+
+# 1password
 COPY --from=onepassword_builder /usr/bin/op /usr/local/bin/
 
 # golang tools
