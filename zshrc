@@ -84,12 +84,11 @@ setopt share_history
 # =============
 #    PROMPT
 # =============
-autoload -U colors && colors
-setopt promptsubst
-
 local ret_status="%(?:%{$fg_bold[green]%}$:%{$fg_bold[green]%}$)"
-PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
-
+#PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+NEWLINE=$'\n'
+source ~/opt/kube-ps1.sh
+PROMPT='$(kube_ps1) $(git_prompt_info) ${NEWLINE}%{$fg_bold[blue]%}%{$fg[cyan]%}%c%{$reset_color%} ${ret_status}%{$reset_color%} '
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
@@ -277,5 +276,6 @@ alias k='kubectl'
 export KUBECONFIG=$(~/opt/iks-merged-config.sh)
 
 ### Enable kube-ps1 support
-source ~/opt/kube-ps1.sh
-PS1='$(kube_ps1)'$PS1
+# Added to prompt section
+#source ~/opt/kube-ps1.sh
+#PS1='$(kube_ps1)'$PS1
