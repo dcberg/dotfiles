@@ -246,11 +246,11 @@ RUN git clone https://github.com/ahmetb/kubectx ~/opt/kubectx && \
    ln -s ~/opt/kubectx/completion/kubectx.zsh ~/opt/completion/_kubectx.zsh && \
    ln -s ~/opt/kubectx/completion/kubens.zsh ~/opt/completion/_kubens.zsh
 
+# Setup a fake kube config
 WORKDIR /root
 
-# Setup a fake kube config
-RUN mkdir ~/.kube 
-COPY kubeconfig ~/.kube/config
+RUN mkdir /.kube 
+COPY kubeconfig /.kube/config
 
 # install IBM Cloud CLI and plugins
 RUN curl -sL https://ibm.biz/idt-installer | bash
@@ -258,15 +258,15 @@ RUN curl -sL https://ibm.biz/idt-installer | bash
 # RUN ibmcloud plugin install container-registry
 
 # copy IKS cluster scripts
-COPY iks-merged-config.sh ~/opt/iks-merged-config.sh
-COPY iks-download-cluster-configs.sh ~/opt/iks-download-cluster-configs.sh
-RUN chmod +x ~/opt/iks-merged-config.sh && \
-   chmod +x ~/opt/iks-download-cluster-configs.sh
+COPY iks-merged-config.sh /opt/iks-merged-config.sh
+COPY iks-download-cluster-configs.sh /opt/iks-download-cluster-configs.sh
+RUN chmod +x /opt/iks-merged-config.sh && \
+   chmod +x /opt/iks-download-cluster-configs.sh
 
 RUN chsh -s /usr/bin/zsh
 
 EXPOSE 3222 60000-60010/udp
-
+WORKDIR /root
 # copy entrypoint command scriopt
 COPY entrypoint.sh /bin/entrypoint.sh
 CMD ["/bin/entrypoint.sh"]
