@@ -263,7 +263,7 @@ eval "$(direnv hook zsh)"
 source <(kubectl completion zsh)
 
 ### oc autocomplete
-sourc <(oc completion zsh)
+source <(oc completion zsh)
 
 ### IBM Cloud autocomplete
 source /usr/local/ibmcloud/autocomplete/zsh_autocomplete
