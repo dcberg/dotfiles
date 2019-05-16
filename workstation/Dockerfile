@@ -15,6 +15,14 @@ RUN wget https://github.com/openshift/origin/releases/download/v3.11.0/openshift
   mv openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc /usr/local/bin && \
   rm openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
 
+# install istioctl
+FROM ubuntu:18.10 as istio_builder
+RUN apt-get update && apt-get install -y wget ca-certificates
+RUN wget https://github.com/istio/istio/releases/download/1.1.6/istio-1.1.6-linux.tar.gz && \
+  tar xf istio-1.1.6-linux.gz && \
+  chmod +x istio-1.1.6/bin/istioctl && \
+  mv istio-1.1.6/bin/istioctl /usr/local/bin && \
+  rm istio-1.1.6-linux.gz
 
 # install 1password
 FROM ubuntu:18.10 as onepassword_builder
@@ -208,6 +216,9 @@ COPY --from=kubectl_builder /usr/local/bin/kubectl /usr/local/bin/
 
 # oc 
 COPY --from=oc_builder /usr/local/bin/oc /usr/local/bin/
+
+# istioctl
+COPY --from=istio_builder /usr/local/bin/istioctl /usr/local/bin/
 
 # 1password
 COPY --from=onepassword_builder /usr/bin/op /usr/local/bin/
