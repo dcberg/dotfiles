@@ -19,10 +19,10 @@ RUN wget https://github.com/openshift/origin/releases/download/v3.11.0/openshift
 FROM ubuntu:18.10 as istio_builder
 RUN apt-get update && apt-get install -y wget ca-certificates
 RUN wget https://github.com/istio/istio/releases/download/1.1.6/istio-1.1.6-linux.tar.gz && \
-  tar xf istio-1.1.6-linux.gz && \
+  tar xf istio-1.1.6-linux.tar.gz && \
   chmod +x istio-1.1.6/bin/istioctl && \
   mv istio-1.1.6/bin/istioctl /usr/local/bin && \
-  rm istio-1.1.6-linux.gz
+  rm istio-1.1.6-linux.tar.gz
 
 # install 1password
 FROM ubuntu:18.10 as onepassword_builder
