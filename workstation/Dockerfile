@@ -267,8 +267,8 @@ RUN git clone https://github.com/ahmetb/kubectx ~/opt/kubectx
 
 # install IBM Cloud CLI and plugins
 RUN curl -sL https://ibm.biz/idt-installer | bash
-# RUN ibmcloud plugin install kubernetes-service
-# RUN ibmcloud plugin install container-registry
+RUN ibmcloud plugin update kubernetes-service
+RUN ibmcloud plugin update container-registry
 
 RUN chsh -s /usr/bin/zsh
 
